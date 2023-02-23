@@ -47,7 +47,7 @@ public class SpringSecurityConfig {
         http.csrf().disable();
         http.headers().frameOptions().disable();
         return http.authorizeRequests().requestMatchers("/**").authenticated().and().formLogin().
-                defaultSuccessUrl("/Dashboard",true).permitAll().
+                defaultSuccessUrl("/dashboard",true).permitAll().
                 and().build();
     }
 

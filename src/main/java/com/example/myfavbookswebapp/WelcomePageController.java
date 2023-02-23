@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("name")
 public class WelcomePageController {
 
-    @RequestMapping("/MyFavBooks")
+    @RequestMapping("/")
     public String goToWelcomePage(){
         return "WelcomePage";
     }
-    @RequestMapping (value="/Dashboard", method = RequestMethod.GET)
-    public String goDashboard(ModelMap model){
+    @RequestMapping (value="/dashboard", method = RequestMethod.GET)
+    public String goToDashboard(ModelMap model){
         model.put("name",getLoggedInUsername());
-        return "BooksPage";
+        return "DashBoardPage";
     }
     private String getLoggedInUsername(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

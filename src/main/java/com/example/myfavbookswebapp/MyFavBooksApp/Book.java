@@ -10,28 +10,31 @@ public class Book {
     @GeneratedValue
     private int id;
     private String username;
+    private String bookName;
     private String author;
     private String description;
     private int numberOfPages;
     private int yearOfRelease;
+    public Book() {
 
-    public Book(String username, String author, String description, int numberOfPages, int yearOfRelease, int id) {
+    }
+
+    public Book(int id, String username, String bookName, String author, String description, int numberOfPages, int yearOfRelease) {
+        this.id = id;
         this.username = username;
+        this.bookName = bookName;
         this.author = author;
         this.description = description;
         this.numberOfPages = numberOfPages;
         this.yearOfRelease = yearOfRelease;
-        this.id = id;
-    }
-
-    public Book() {
-
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", bookName='" + bookName + '\'' +
                 ", author='" + author + '\'' +
                 ", description='" + description + '\'' +
                 ", numberOfPages=" + numberOfPages +
@@ -53,6 +56,14 @@ public class Book {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
     public String getAuthor() {
