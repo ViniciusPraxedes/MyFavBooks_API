@@ -10,6 +10,7 @@
 
     <link href="webjars/bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet" >
     <link rel="icon" type="image/x-icon" href="https://freepngimg.com/download/book/6-2-book-png-7.png">
+    <link href="webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
 
     <style>
         @media (min-width: 768px) {
@@ -22,71 +23,62 @@
 
 </head>
 <body class="bg-light">
-
 <div class="container">
     <main>
         <div class="py-5 text-center">
-<%--            <img class="d-block mx-auto mb-4" src="https://images.pexels.com/photos/4865735/pexels-photo-4865735.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" width="72" height="57">--%>
+           <img class="d-block mx-auto mb-4" src="https://freepngimg.com/download/book/6-2-book-png-7.png" alt="" width="72" height="57">
             <h2>Add a new book</h2>
             <p class="lead">Fill up the form below to add a new book.</p>
         </div>
-
-            <div class="col-md-7 col-lg-8">
-                <div class="col-md-7 col-lg-8">
-                    <h4 class="mb-3">Book details</h4>
-                    <div class="row g-3">
-                        <%--@elvariable id="book" type=""--%>
-                        <form:form action="addBook" method="post" modelAttribute="book">
-                        <div class="col-sm-6">
-                            <form:label class="form-label" path="bookName">Book name</form:label>
-                            <form:input path="bookName"/>
-                        </div>
-
-                        <%--<div class="col-sm-6">
-                            <label for="lastName" class="form-label">Author</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                                Valid last name is required.
-                            </div>
-                        </div>
-
-
-                        <div class="col-sm-6">
-                            <label for="firstName" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="description" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                                Valid description.
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-3">
-                            <label for="zip" class="form-label">Number of pages</label>
-                            <input type="text" class="form-control" id="zip" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Number of pages required.
-                            </div>
-                        </div>--%>
-                        </form:form>
-                    </div>
+        <div>
+            <h4 class="mb-3">Book details</h4>
+            <%--@elvariable id="book" type=""--%>
+            <form:form class="row g-3" action="addBook" method="post" modelAttribute="book">
+                <div class="col-md-6">
+                    <form:label class="form-label" path="bookName">Book name</form:label>
+                    <form:input type="text" class="form-control" id="Book name" path="bookName"/>
                 </div>
-            </div>
+                <div class="col-md-6">
+                    <form:label class="form-label" path="author">Author</form:label>
+                    <form:input type="text" class="form-control" id="Author" path="author"/>
+                </div>
+                <div class="col-md-12">
+                    <form:label class="form-label" path="description">Description</form:label>
+                    <form:textarea class="form-control" path="description" style="height: 100px"/>
+                </div>
+                <div class="col-md-2">
+                    <form:label class="form-label" path="numberOfPages">Number of pages</form:label>
+                    <form:input type="text" class="form-control" id="Number of pages" path="numberOfPages"/>
+                </div>
+                <div class="col-md-4">
+                    <form:label class="form-label" path="yearOfRelease">Year of release</form:label>
+                    <form:input type="text" class="form-control" path="yearOfRelease" required="required"/>
+                    <form:errors path="yearOfRelease" cssClass="text-warning"/>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Add book</button>
+                </div>
+            </form:form>
+        </div>
     </main>
-
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2017–2021 Company Name</p>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Privacy</a></li>
-            <li class="list-inline-item"><a href="#">Terms</a></li>
-            <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
-    </footer>
 </div>
 
-
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="form-validation.js"></script>
+<script src="webjars/bootstrap/5.2.3/js/bootstrap.min.js"></script>
+<script src="webjars/jquery/3.6.0/jquery.min.js"></script>
+<script src="webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    $('#yearOfRelease').datepicker({
+        format: " yyyy",
+        viewMode: "years",
+        minViewMode: "years",
+        autoclose: true,
+        startView: 2,
+        defaultViewDate: {
+            year: '2000'
+        },
+        startDate: '-71y',
+        endDate: '-0y'
+    });
+</script>
 </body>
 </html>

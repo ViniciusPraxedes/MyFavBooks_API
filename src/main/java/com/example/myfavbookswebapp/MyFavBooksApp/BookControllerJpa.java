@@ -32,23 +32,25 @@ public class BookControllerJpa {
 
     //Show addNewBookPage
     @RequestMapping(value = "/addBook", method = RequestMethod.GET)
-    public String showAddBookPage(Model model) {
-        model.addAttribute("book", new Book());
+    public String showAddBookPage(ModelMap model) {
+        String username = getLoggedInUsername(model);
+        Book book = new Book(0,username,"","","",0,0);
+        model.put("book",book);
         return "AddNewBookPage";
     }
-    //Add book
+
+    //Add book/save book to database if everything went well
     @RequestMapping(value = "/addBook", method = RequestMethod.POST)
-    public String showAddBookPage(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult){
+    public String submitForm(ModelMap model, @Valid @ModelAttribute("book") Book book, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "AddNewBookPage";
         }
+        String username = getLoggedInUsername(model);
+        book.setUsername(username);
+        bookRepository.save(book);
+        System.out.println(book);
     return "BookSuccessfullyAdded";
-
     }
-
-
-
-
 
     private String getLoggedInUsername(ModelMap model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

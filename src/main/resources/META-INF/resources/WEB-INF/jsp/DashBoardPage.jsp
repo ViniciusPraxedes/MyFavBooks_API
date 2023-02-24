@@ -30,33 +30,6 @@
 </head>
 <body>
 
-<%--<div class="container-fluid">
-    <h1>Your to do list</h1>
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-        <tr>
-            <th>Description</th>
-            <th>Target Date</th>
-            <th>Is Done?</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${books}" var="book">
-            <tr>
-                <td>${book.bookName}</td>
-                &lt;%&ndash;<td>${todo.targetDate}</td>
-                <td>${todo.done}</td>
-                <td><a href="DeleteToDo?id=${todo.id}" class="btn btn-warning">DELETE</a> </td>
-                <td><a href="UpdateToDo?id=${todo.id}" class="btn btn-success">UPDATE</a> </td>&ndash;%&gt;
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-    &lt;%&ndash;<a href="AddToDo" class="btn btn-success">Add To do</a>&ndash;%&gt;
-</div>--%>
-
-
 
 <header class="mb-auto">
     <div>
@@ -73,27 +46,7 @@
                 <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
             </ul>
         </nav>
-        <%--<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">MyFavBooks</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Welcome">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
-                        </li>
-                        &lt;%&ndash;<li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li>&ndash;%&gt;
-                    </ul>
-                </div>
-            </div>
-        </nav>--%>
+        
     </div>
 </header>
 
