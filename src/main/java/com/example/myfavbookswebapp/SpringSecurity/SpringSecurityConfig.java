@@ -51,7 +51,7 @@ public class SpringSecurityConfig {
                 and().build();
     }
 
-    /*@Bean
+   /* @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
         http.formLogin(withDefaults());

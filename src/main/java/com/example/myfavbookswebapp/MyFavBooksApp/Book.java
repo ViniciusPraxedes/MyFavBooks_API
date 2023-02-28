@@ -3,6 +3,9 @@ package com.example.myfavbookswebapp.MyFavBooksApp;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 public class Book {
@@ -10,10 +13,18 @@ public class Book {
     @GeneratedValue
     private int id;
     private String username;
+    @NotEmpty
     private String bookName;
+    @NotEmpty
     private String author;
+    @NotEmpty
     private String description;
+    @NotNull
+    @Min(1)
     private int numberOfPages;
+    @NotNull
+    @Min(1)
+    @DateTimeFormat(pattern = "YYYY")
     private int yearOfRelease;
     public Book() {
 

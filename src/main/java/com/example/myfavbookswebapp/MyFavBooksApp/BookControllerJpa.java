@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +21,9 @@ public class BookControllerJpa {
     }
 
     //List books
-    @RequestMapping("/dashboard")
-    public String listBooks(ModelMap model){
+    @RequestMapping (value="/dashboard", method = RequestMethod.GET)
+    public String goToDashboard(ModelMap model){
+        model.put("name",getLoggedInUsername(model));
         String username = getLoggedInUsername(model);
         List<Book> books = bookRepository.findByUsername(username);
         model.addAttribute("books", books);
@@ -48,8 +48,32 @@ public class BookControllerJpa {
         String username = getLoggedInUsername(model);
         book.setUsername(username);
         bookRepository.save(book);
-        System.out.println(book);
-    return "BookSuccessfullyAdded";
+        return "redirect:dashboard";
+    }
+    //Delete book
+    @RequestMapping("deleteBook")
+    public String deleteBook(@RequestParam int id) {
+        bookRepository.deleteById(id);
+        return "redirect:dashboard";
+    }
+    //Update book
+    @RequestMapping(value = "updateBook", method = RequestMethod.GET)
+    public String showUpdateBookPage(@RequestParam int id, ModelMap model) {
+        Book book = bookRepository.findById(id).get();
+        bookRepository.delete(book);
+        model.addAttribute("book", book);
+        return "AddNewBookPage";
+    }
+
+    @RequestMapping(value = "/updateBook", method = RequestMethod.POST)
+    public String updateBook(ModelMap model, @Valid Book bookToBeUpdated, BindingResult result) {
+        if (result.hasErrors()) {
+            return "AddNewBookPage";
+        }
+        String username = getLoggedInUsername(model);
+        bookToBeUpdated.setUsername(username);
+        bookRepository.save(bookToBeUpdated);
+        return "redirect:dashboard";
     }
 
     private String getLoggedInUsername(ModelMap model) {
